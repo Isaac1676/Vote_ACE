@@ -1,0 +1,15 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend de l'appli de vote du président de l'ACE",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Kakou Moïse",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
