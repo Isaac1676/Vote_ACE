@@ -1,0 +1,63 @@
+h1 {
+    color: #cc4e5c;
+    margin: 20px 30px;
+}
+
+p {
+    color: rgba(31, 23, 23, 0.4);
+    margin: -5px 30px;
+}
+
+.inputs {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 480px;
+    height: 80px;
+    border: 1px solid #cc4e5c;
+    border-radius: 6px;
+}
+
+.input img{
+    margin: 0px 15px;
+}
+
+.input input, .input select{
+    height: 50px;
+    width: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 17px;
+    color: #1f1717;
+}
+
+.submit_container {
+    display: flex;
+    gap: 30px;
+    margin: 60px auto;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: 500px;
+    height: 59px;
+    color: #cc4e5c;
+    box-shadow: 0 0 15px rgba(204, 78, 92, 0.1);
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 17px;
+    border-radius: 10px;
+}
