@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "./central.css";
-import id from '../../assets/id.svg'
+import id from '../../assets/id_icon.svg'
 import email from '../../assets/email.svg'
 import person from '../../assets/person.svg'
 import tel from '../../assets/telephone.svg'

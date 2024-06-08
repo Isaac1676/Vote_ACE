@@ -1,0 +1,10 @@
+h1 {
+    font-weight: 700;
+    color: #cc4e5c;
+    margin: 30px auto 15px 30px;
+}
+
+p {
+    color: rgba(31, 23, 23, 0.4);
+    margin: -5px 30px;
+}

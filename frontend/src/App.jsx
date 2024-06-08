@@ -1,13 +1,14 @@
 import React from 'react'
-import Central from './components/Central/Central'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer'
+import Vote from './components/Vote/Vote'
+
 
 const App = () => {
   return (
     <>
       <Nav />
-      <Central />
+      < Vote />
       <Footer />
     </>
   )
