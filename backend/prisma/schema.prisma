@@ -12,3 +12,32 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Personne {
+  id           Int       @map("_id") @id 
+  firstName    String
+  lastName     String
+  phoneNumber  String
+  email        String   @unique
+  affiliation  String
+  voteToken    Int      @default(1)
+  votes        Vote[]
+}
+
+model Candidat {
+  id           Int      @map("_id") @id 
+  firstName    String
+  lastName     String
+  profilePicture String?
+  votes        Int      @default(0)
+  votesByVote Vote[]
+}
+
+model Vote {
+  id           Int      @map("_id") @id 
+  personId     Int
+  candidateId  Int
+
+  Personne     Personne @relation(fields: [personId], references: [id])
+  Candidat     Candidat @relation(fields: [candidateId], references: [id])
+}
