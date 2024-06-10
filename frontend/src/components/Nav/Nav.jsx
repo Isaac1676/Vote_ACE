@@ -8,11 +8,11 @@ const Nav = () => {
         <nav>
             <div class="nav">
                 <div class="logo">
-                    <img src={logo} alt="" srcset="" />
+                    <img src={logo_ace} alt="" srcset="" />
                 </div>
                 <div class="line"></div>
                 <div class="logo">
-                    <img src={logo_ace} alt="" srcset="" />
+                    <img src={logo} alt="" srcset="" />
                 </div>
             </div>
             <p class="ace">APOTHEOSE 2024 </p>
