@@ -1,10 +1,40 @@
 const express = require('express');
-const { createPerson, voteForCandidate } = require('../controllers/personController');
+const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
+const prisma = new PrismaClient();
 
-// Routes pour les personnes
-router.post('/', createPerson);  // Route pour créer une personne
-router.post('/:personId/vote/:candidateId', voteForCandidate);  // Route pour voter pour un candidat
+// Ajouter une nouvelle personne
+router.post('/', async (req, res) => {
+  const { firstName, lastName, phoneNumber, email, affiliation } = req.body;
 
-// Exporter les routes des personnes
+  try {
+    const person = await prisma.personne.create({
+      data: {
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        affiliation
+      }
+    });
+
+    res.status(201).json(person);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Filtrer les personnes de l'ACE
+router.get('/ace', async (req, res) => {
+  try {
+    const acePersons = await prisma.personne.findMany({
+      where: { affiliation: 'ACE' }
+    });
+
+    res.json(acePersons);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
 module.exports = router;

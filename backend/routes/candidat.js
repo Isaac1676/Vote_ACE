@@ -1,9 +1,16 @@
 const express = require('express');
-const { createCandidate } = require('../controllers/candidatController');
+const { PrismaClient } = require('@prisma/client');
 const router = express.Router();
+const prisma = new PrismaClient();
 
-// Route pour créer un candidat
-router.post('/', createCandidate);
+// Récupérer tous les candidats
+router.get('/', async (req, res) => {
+  try {
+    const candidates = await prisma.candidat.findMany();
+    res.json(candidates);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
-// Exporter les routes des candidats
 module.exports = router;

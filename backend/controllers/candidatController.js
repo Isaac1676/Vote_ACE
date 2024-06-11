@@ -19,3 +19,26 @@ exports.createCandidate = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+// Récupérer la liste des candidats
+exports.getCandidates = async (req, res) => {
+  try {
+    const candidates = await prisma.candidat.findMany({
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        profilePicture: true
+      }
+    });
+
+    const formattedCandidates = candidates.map(candidate => ({
+      fullName: `${candidate.firstName} ${candidate.lastName}`,
+      profilePicture: candidate.profilePicture
+    }));
+
+    res.json(formattedCandidates);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
