@@ -13,11 +13,6 @@ const candidateSchema = new mongoose.Schema({
         type: Number,
         default: 0 // Initialise le nombre de votes à 0 pour un nouveau candidat
     },
-    createdBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Vous pouvez ajuster cela en fonction de votre modèle utilisateur, si nécessaire
-        required: true
-    }
 });
 
 const Candidate = mongoose.model('Candidate', candidateSchema);

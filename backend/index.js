@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoute = require("./route/person_route.js");
-const Candidat = require("./models/candidat_model.js");
+const candidatRoute = require("./route/candidat_route.js");
 const { PORT } = require("./config.js");
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(express.urlencoded({extends: false}));
 
 // Routes
 app.use('/users', userRoute)
-app.use('/users', userRoute)
+app.use('/candidats', candidatRoute)
 
 
 
