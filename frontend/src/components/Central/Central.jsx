@@ -6,10 +6,10 @@ import person from '../../assets/person.svg'
 import tel from '../../assets/telephone.svg'
 
 const Central = () => {
-    const [name, setName] = useState('');
+    const [lastName, setlastName] = useState('');
     const [emailValue, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [host, setHost] = useState('');
+    const [firstName, setfirstName] = useState('');
     const [appartenance, setAppartenance] = useState('');
 
     const handleSubmit = (e) => {
@@ -39,9 +39,20 @@ const Central = () => {
                         <img src={person} alt="" />
                         <input
                             type="text"
-                            placeholder='Nom et prénoms'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            placeholder='Nom'
+                            value={lastName}
+                            onChange={(e) => setlastName(e.target.value)}
+                            required
+                        />
+                    </div>
+
+                    <div className="input">
+                        <img src={person} alt="" />
+                        <input
+                            type="Prénoms"
+                            placeholder='Prénoms'
+                            value={emailValue}
+                            onChange={(e) => setfirstName(e.target.value)}
                             required
                         />
                     </div>
@@ -58,23 +69,12 @@ const Central = () => {
                     </div>
 
                     <div className="input">
-                        <img src={tel} alt="" />
+                        <img src={phone} alt="" />
                         <input
                             type="tel"
                             placeholder='Numéro de téléphone'
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="input">
-                        <img src={person} alt="" />
-                        <input
-                            type="text"
-                            placeholder='Hôte'
-                            value={host}
-                            onChange={(e) => setHost(e.target.value)}
                             required
                         />
                     </div>
