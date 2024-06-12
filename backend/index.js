@@ -1,19 +1,22 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors")
 const userRoute = require("./route/person_route.js");
 const candidatRoute = require("./route/candidat_route.js");
+const voteRoute = require("./route/vote_route.js");
 const { PORT } = require("./config.js");
 
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({extends: false}));
 
 // Routes
-app.use('/users', userRoute)
-app.use('/candidats', candidatRoute)
-
+app.use('/users', userRoute);
+app.use('/candidats', candidatRoute);
+app.use('/votes', voteRoute);
 
 
 app.get('/', (req, res) => {

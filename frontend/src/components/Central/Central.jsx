@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./central.css";
+import axios from 'axios';
 import id from '../../assets/id_icon.svg'
 import email from '../../assets/email.svg'
 import person from '../../assets/person.svg'
@@ -11,17 +12,32 @@ const Central = () => {
     const [phone, setPhone] = useState('');
     const [appartenance, setAppartenance] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validation des champs
-        if (!name || !emailValue || !phone || !host || !appartenance) {
-            alert('Tous les champs sont obligatoires.');
-            return;
-        }
+        try {
+            // Envoyer les données au serveur avec Axios
+            const response = await axios.post('http://localhost:2013/users', {
+                name: name,
+                email: emailValue,
+                phone: phone,
+                appartenance: appartenance
+            });
 
-        // Afficher une alerte de remerciement
-        alert('Merci');
+            console.log(response);
+
+            // Réinitialiser les champs après la création réussie de l'utilisateur
+            setName('');
+            setEmail('');
+            setPhone('');
+            setAppartenance('');
+
+            // Afficher une alerte de remerciement
+            alert('Merci pour votre enregistrement !');
+        } catch (error) {
+            console.error('Erreur:', error.message);
+            alert('Une erreur est survenue lors de l\'enregistrement.');
+        }
     };
 
     return (
@@ -63,17 +79,6 @@ const Central = () => {
                             placeholder='Numéro de téléphone'
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="input">
-                        <img src={person} alt="" />
-                        <input
-                            type="text"
-                            placeholder='Hôte'
-                            value={host}
-                            onChange={(e) => setHost(e.target.value)}
                             required
                         />
                     </div>

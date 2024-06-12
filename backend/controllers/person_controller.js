@@ -19,6 +19,36 @@ const getUser = async (req, res) => {
     }
 }
 
+const getAce = async (req, res) => {
+    const affiliation = 'ACE';
+
+    try {
+        const users = await User.find({ appartenance: affiliation });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+const getUserByPhone = async (req, res) => {
+    const phoneNumber = req.params.phoneNumber;
+
+    try {
+        // Recherche de l'utilisateur par numéro de téléphone
+        const user = await User.findOne({ phone: phoneNumber });
+
+        if (!user) {
+            return res.status(404).json({ message: "Aucun utilisateur trouvé avec ce numéro de téléphone." });
+        }
+
+        // Si l'utilisateur est trouvé, retournez-le
+        res.json(user);
+    } catch (error) {
+        console.error('Erreur:', error.message);
+        res.status(500).json({ message: "Une erreur est survenue lors de la recherche de l'utilisateur." });
+    }
+}
+
 const createUser = async (req, res) => {
     try {
         const user = await User.create(req.body);
@@ -31,5 +61,7 @@ const createUser = async (req, res) => {
 module.exports = {
     getUsers,
     getUser,
+    getUserByPhone,
+    getAce,
     createUser
 }
