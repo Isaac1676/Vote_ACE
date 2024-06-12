@@ -1,18 +1,25 @@
-import React from 'react'
-import Nav from './components/Nav/Nav'
-import Footer from './components/Footer/Footer'
-import Vote from './components/Vote/Vote'
-import Central from './components/Central/Central'
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
+import Footer from './components/Footer/Footer';
+import Verify from './components/Verify/Verify';
+import Vote from './components/Vote/Vote';
+import Central from './components/Central/Central';
 
 const App = () => {
   return (
     <>
       <Nav />
-      <Vote />
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Verify />} />
+          <Route path="/vote" element={<Vote />} />
+          <Route path="/central" element={<Central />} />
+        </Routes>
+      </Router>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

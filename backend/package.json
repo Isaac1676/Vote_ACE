@@ -1,26 +1,19 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend de l'appli de vote du président de l'ACE",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "serve": "node index.js"
   },
-  "author": "Kakou Moïse",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
-    "@prisma/client": "^5.15.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.0",
-    "multer": "^1.4.5-lts.1"
-  },
-  "devDependencies": {
-    "@types/node": "^20.14.0",
-    "prisma": "^5.14.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "mongodb": "^6.7.0",
+    "mongoose": "^8.4.1",
+    "nodemon": "^3.1.3"
   }
 }

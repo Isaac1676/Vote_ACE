@@ -1,26 +1,36 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors")
+const userRoute = require("./route/person_route.js");
+const candidatRoute = require("./route/candidat_route.js");
+const voteRoute = require("./route/vote_route.js");
+const { PORT } = require("./config.js");
 
 const app = express();
-const port = process.env.PORT || 2013;
 
 // Middleware
+app.use(express.json());
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.urlencoded({extends: false}));
 
-// Importer les routes
-// const voteRoutes = require('./routes/vote');
-const candidateRoutes = require('./routes/candidat');  // Importer les routes des candidats
-const personRoutes = require('./routes/person');  // Importer les routes des personnes
+// Routes
+app.use('/users', userRoute);
+app.use('/candidats', candidatRoute);
+app.use('/votes', voteRoute);
 
-// Utiliser les routes
-// app.use('/api/votes', voteRoutes);
-app.use('/api/candidates', candidateRoutes);  // Utiliser les routes des candidats
-app.use('/api/persons', personRoutes);  // Utiliser les routes des personnes
 
-// Démarrer le serveur
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.get('/', (req, res) => {
+    res.send("HELLO this is a NODE API");
 });
+
+
+mongoose.connect("mongodb+srv://admin_isaac:D2F5d0Ya9i6RBIGA@ace-backend.sjzi9gr.mongodb.net/?retryWrites=true&w=majority&appName=ACE-Backend")
+.then(() => {
+    console.log("Connected");
+    app.listen(PORT, () => {
+        console.log(`APP on ${PORT}`)
+    });
+})
+.catch(() => {
+    console.log("Connection failed")
+})
