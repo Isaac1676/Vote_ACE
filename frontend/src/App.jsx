@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Nav />
-      <Vote />
+      <Central />
       <Footer />
     </>
   )

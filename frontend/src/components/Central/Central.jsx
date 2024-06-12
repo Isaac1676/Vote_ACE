@@ -9,7 +9,6 @@ const Central = () => {
     const [name, setName] = useState('');
     const [emailValue, setEmail] = useState('');
     const [phone, setPhone] = useState('');
-    const [host, setHost] = useState('');
     const [appartenance, setAppartenance] = useState('');
 
     const handleSubmit = (e) => {
