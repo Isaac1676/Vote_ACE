@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import Verify from './components/Verify/Verify';
 import Vote from './components/Vote/Vote';
 import Central from './components/Central/Central';
+import Admin from './components/Admin/Admin';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route exact path="/" element={<Verify />} />
           <Route path="/vote" element={<Vote />} />
           <Route path="/central" element={<Central />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </Router>
       <Footer />

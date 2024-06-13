@@ -18,6 +18,8 @@ app.use('/images', express.static(path.join(__dirname, 'public/images')));
 const PORT = process.env.PORT || 2013;
 const MONGODB_URI = process.env.MONGODB_URI;
 
+console.log(MONGODB_URI);
+
 // Routes
 app.use('/users', userRoute);
 app.use('/candidats', candidatRoute);

@@ -12,7 +12,9 @@ const Central = () => {
     const [phone, setPhone] = useState('');
     const [appartenance, setAppartenance] = useState('');
 
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL;
+
+    console.log(apiUrl)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

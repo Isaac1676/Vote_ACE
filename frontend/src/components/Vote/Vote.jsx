@@ -7,9 +7,9 @@ import Profile from './Profile/Profile';
 const Vote = () => {
     const location = useLocation();
     const { user } = location.state || {};
-    console.log(user)
     const [candidates, setCandidates] = useState([]);
-    const apiUrl = process.env.REACT_APP_API_URL;
+
+    const apiUrl = import.meta.env.VITE_API_URL; // Utilisation correcte de la variable d'environnement
 
     useEffect(() => {
         const fetchCandidates = async () => {
@@ -34,8 +34,8 @@ const Vote = () => {
                 <Profile 
                     key={index} 
                     name={candidate.name} 
-                    id={`http://localhost:2013/${candidate.photo}`}
-                    userId={user._id}
+                    id={`${apiUrl}/${candidate.photo}`} // Concaténer l'URL de base avec le chemin de l'image
+                    userId={user?._id} // Vérifiez si l'utilisateur est défini
                     candidateId={candidate._id}
                 />
             ))}

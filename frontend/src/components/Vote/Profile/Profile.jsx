@@ -5,7 +5,8 @@ import "./profile.css";
 
 const Profile = ({ id, name, candidateId, userId }) => {
     const navigate = useNavigate();
-    const apiUrl = process.env.REACT_APP_API_URL;
+
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const handleVote = async () => {
         try {

@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./verify.css";
 import axios from 'axios';
-import tel from '../../assets/telephone.svg'
+import tel from '../../assets/telephone.svg';
 
 const Verify = () => {
     const [phone, setPhone] = useState('');
     const navigate = useNavigate(); 
-    const apiUrl = import.meta.env.REACT_APP_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL; // Utilisation correcte de la variable d'environnement
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,9 +16,9 @@ const Verify = () => {
             // Recherche de l'utilisateur associé au numéro de téléphone
             const response = await axios.get(`${apiUrl}/users/phone/${phone}`);
             const foundUser = response.data;
-            console.log(foundUser);
 
             if (foundUser) {
+                console.log(foundUser);
                 if (foundUser.voteToken == 1) {
                     // Vérification de l'affiliation de l'utilisateur
                     if (foundUser.appartenance === "ACE") {
@@ -28,7 +28,7 @@ const Verify = () => {
                         alert("L'utilisateur n'appartient pas à l'affiliation ACE.");
                     }
                 } else {
-                    alert("Vous avez déjà voté ! ")
+                    alert("Vous avez déjà voté !");
                 }
             }
         } catch (error) {
@@ -43,12 +43,10 @@ const Verify = () => {
 
     return (
         <div>
-            <h1>Authentification </h1>
-
+            <h1>Authentification</h1>
             <p>
                 Afin de vérifiez qui vous êtes et de vous donner accès
-                à la plateforme de vote !
-                Nous vous invitons  à remplir le champ ci-dessous.
+                à la plateforme de vote ! Nous vous invitons à remplir le champ ci-dessous.
             </p>
             <form className="container" onSubmit={handleSubmit}>
                 <div className="inputs">
@@ -62,7 +60,6 @@ const Verify = () => {
                             required
                         />
                     </div>
-
                     <div className="submit_container">
                         <button type="submit" className="submit">Valider</button>
                     </div>
