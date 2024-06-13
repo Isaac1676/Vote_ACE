@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors")
-const userRoute = require("./route/person_route.js");
+const path = require('path');
+const userRoute = require("./route/user_route.js");
 const candidatRoute = require("./route/candidat_route.js");
 const voteRoute = require("./route/vote_route.js");
 const { PORT } = require("./config.js");
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extends: false}));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 // Routes
 app.use('/users', userRoute);

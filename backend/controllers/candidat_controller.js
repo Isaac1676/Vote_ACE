@@ -1,4 +1,5 @@
 const Candidat = require("../models/candidat_model");
+const upload = require('../mutler');
 
 const getCandidats = async (req, res) => {
     try {
@@ -21,8 +22,19 @@ const getCandidat = async (req, res) => {
 
 const createCandidat = async (req, res) => {
     try {
-        const candidat = await Candidat.create(req.body);
-        res.status(200).json(candidat);
+        const { name } = req.body;
+        const photoUrl = req.file.filename; // Nom du fichier téléchargé
+
+        // Créer un nouveau candidat
+        const newCandidat = new Candidat({
+            name,
+            photo: `images/${photoUrl}`
+        });
+
+        // Enregistrer le candidat dans la base de données
+        const savedCandidat = await newCandidat.save();
+
+        res.status(201).json(savedCandidat);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

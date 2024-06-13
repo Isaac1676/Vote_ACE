@@ -33,7 +33,7 @@ const Vote = () => {
                 <Profile 
                     key={index} 
                     name={candidate.name} 
-                    id={candidate.photo}
+                    id={`http://localhost:2013/${candidate.photo}`}
                     userId={user._id}
                     candidateId={candidate._id}
                 />
