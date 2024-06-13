@@ -4,9 +4,8 @@ import "./verify.css";
 import axios from 'axios';
 import tel from '../../assets/telephone.svg'
 
-const Central = () => {
+const Verify = () => {
     const [phone, setPhone] = useState('');
-    const [user, setUser] = useState(null);
     const navigate = useNavigate(); // Initialiser useHistory
 
     const handleSubmit = async (e) => {
@@ -16,22 +15,28 @@ const Central = () => {
             // Recherche de l'utilisateur associé au numéro de téléphone
             const response = await axios.get(`http://localhost:2013/users/phone/${phone}`);
             const foundUser = response.data;
+            console.log(foundUser);
 
             if (foundUser) {
-                // Vérification de l'affiliation de l'utilisateur
-                if (foundUser.appartenance === "ACE") {
-                    // Redirection vers une autre page
-                    setUser(foundUser);
-                    navigate('/vote'); // Remplacez '/another-page' par le chemin de la page de destination
+                if (foundUser.voteToken == 1) {
+                    // Vérification de l'affiliation de l'utilisateur
+                    if (foundUser.appartenance === "ACE") {
+                        // Redirection vers une autre page
+                        navigate('/vote', { state: { user: foundUser } });
+                    } else {
+                        alert("L'utilisateur n'appartient pas à l'affiliation ACE.");
+                    }
                 } else {
-                    alert("L'utilisateur n'appartient pas à l'affiliation ACE.");
+                    alert("Vous avez déjà voté ! ")
                 }
-            } else {
-                alert("Aucun utilisateur trouvé avec ce numéro de téléphone.");
             }
         } catch (error) {
-            console.log('Erreur:', error.message);
-            alert("Une erreur est survenue lors de la vérification.");
+            if (error.response && error.response.status === 404) {
+                alert(error.response.data.message); // Afficher le message d'erreur personnalisé
+            } else {
+                console.log('Erreur:', error.message);
+                alert("Une erreur est survenue lors de la vérification.");
+            }
         }
     };
 
@@ -66,4 +71,4 @@ const Central = () => {
     )
 }
 
-export default Central;
+export default Verify;

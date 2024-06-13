@@ -1,31 +1,45 @@
-import React from 'react'
-import "./vote.css"
-import id1 from "../../assets/id1.svg"
-import id2 from "../../assets/id2.svg"
-import id3 from "../../assets/id3.svg"
-import Profile from './Profile/Profile'
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import "./vote.css";
+import Profile from './Profile/Profile';
 
 const Vote = () => {
-    const profiles = [
-        { name: 'ZAGOTE DANN ELIE', avatar: id1 },
-        { name: 'JOHN DOE', avatar: id2 },
-        { name: 'JANE DOE', avatar: id3 }
-    ];
+    const location = useLocation();
+    const { user } = location.state || {};
+    console.log(user)
+    const [candidates, setCandidates] = useState([]);
+
+    useEffect(() => {
+        const fetchCandidates = async () => {
+            try {
+                const response = await axios.get('http://localhost:2013/candidats'); // Assurez-vous que l'URL est correcte
+                setCandidates(response.data);
+            } catch (error) {
+                console.log('Erreur lors de la récupération des candidats:', error);
+            }
+        };
+
+        fetchCandidates();
+    }, []);
 
     return (
         <div>
-            <h1>Votes </h1>
-
+            <h1>Votes</h1>
             <p>
-                Procédez maintenant au vote
-                en choissisant votre candidat
+                Procédez maintenant au vote en choisissant votre candidat
             </p>
-
-            {profiles.map((profile, index) => (
-                <Profile key={index} name={profile.name} id={profile.avatar} />
+            {candidates.map((candidate, index) => (
+                <Profile 
+                    key={index} 
+                    name={candidate.name} 
+                    id={candidate.photo}
+                    userId={user._id}
+                    candidateId={candidate._id}
+                />
             ))}
         </div>
-    )
-}
+    );
+};
 
-export default Vote
+export default Vote;

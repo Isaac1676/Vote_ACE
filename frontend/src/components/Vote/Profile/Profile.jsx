@@ -1,26 +1,41 @@
-import React from 'react'
-import "./profile.css"
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import "./profile.css";
 
-const Profile = ({id, name}) => {
-    const handleVote = () => {
-        alert(`Merci d'avoir voté ${name}`);
-      };
+const Profile = ({ id, name, candidateId, userId }) => {
+    const navigate = useNavigate();
+
+    const handleVote = async () => {
+        try {
+            const response = await axios.post('http://localhost:2013/votes', {
+                userId: userId, // Passez l'ID de l'utilisateur ici
+                candidateId: candidateId // Passez l'ID du candidat ici
+            });
+
+            if (response.status === 201) {
+                navigate('/');
+                alert(`Merci d'avoir voté pour ${name}`);
+            }
+        } catch (error) {
+            console.log('Erreur lors du vote:', error.message);
+            alert("Une erreur est survenue lors du vote. Veuillez réessayer.");
+        }
+    };
 
     return (
         <div>
             <div className="profile_card">
                 <div className="avatar">
-                    <img src={id} alt="" srcset="" />
+                    <img src={id} alt="" />
                 </div>
-
                 <div className="name">
                     {name}
                 </div>
             </div>
-
             <div className="button" onClick={handleVote}>Voter</div>
         </div>
-    )
+    );
 }
 
-export default Profile
+export default Profile;

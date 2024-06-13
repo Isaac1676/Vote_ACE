@@ -33,10 +33,11 @@
 }
 
 .button {
-    background-color: #BF8A3D;
+    background-color: rgba(191, 138, 61, 0.9);
     color: #fff;
     font-weight: 500;
     font-size: 16px;
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;

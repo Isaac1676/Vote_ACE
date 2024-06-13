@@ -7,7 +7,7 @@ import person from '../../assets/person.svg'
 import tel from '../../assets/telephone.svg'
 
 const Central = () => {
-    const [lastName, setlastName] = useState('');
+    const [name, setName] = useState('');
     const [emailValue, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [appartenance, setAppartenance] = useState('');
@@ -35,8 +35,12 @@ const Central = () => {
             // Afficher une alerte de remerciement
             alert('Merci pour votre enregistrement !');
         } catch (error) {
-            console.error('Erreur:', error.message);
-            alert('Une erreur est survenue lors de l\'enregistrement.');
+            if (error.response && error.response.status === 409) {
+                alert(error.response.data.message); // Display custom error message
+            } else {
+                console.log('Erreur:', error.message);
+                alert('Une erreur est survenue lors de l\'enregistrement.');
+            }
         }
     };
 
@@ -55,19 +59,8 @@ const Central = () => {
                         <input
                             type="text"
                             placeholder='Nom'
-                            value={lastName}
-                            onChange={(e) => setlastName(e.target.value)}
-                            required
-                        />
-                    </div>
-
-                    <div className="input">
-                        <img src={person} alt="" />
-                        <input
-                            type="Prénoms"
-                            placeholder='Prénoms'
-                            value={emailValue}
-                            onChange={(e) => setfirstName(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             required
                         />
                     </div>
@@ -84,7 +77,7 @@ const Central = () => {
                     </div>
 
                     <div className="input">
-                        <img src={phone} alt="" />
+                        <img src={tel} alt="" />
                         <input
                             type="tel"
                             placeholder='Numéro de téléphone'

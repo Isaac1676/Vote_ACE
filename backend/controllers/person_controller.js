@@ -50,7 +50,20 @@ const getUserByPhone = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
+    const { email, phone } = req.body;
+
     try {
+        const existingEmailUser = await User.findOne({ email });
+        if (existingEmailUser) {
+            return res.status(409).json({ message: 'Vous êtes déjà enregistré' });
+        }
+
+        // Check if phone number already exists
+        const existingPhoneUser = await User.findOne({ phone });
+        if (existingPhoneUser) {
+            return res.status(409).json({ message: 'Vous êtes déjà enregistré' });
+        }
+
         const user = await User.create(req.body);
         res.status(200).json(user);
     } catch (error) {
