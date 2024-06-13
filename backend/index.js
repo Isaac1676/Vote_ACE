@@ -5,7 +5,8 @@ const path = require('path');
 const userRoute = require("./route/user_route.js");
 const candidatRoute = require("./route/candidat_route.js");
 const voteRoute = require("./route/vote_route.js");
-const { PORT } = require("./config.js");
+require('dotenv').config(); // Charger les variables d'environnement partagées
+require('dotenv').config({ path: '.env.backend' });
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extends: false}));
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
+const PORT = process.env.PORT || 2013;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Routes
 app.use('/users', userRoute);
@@ -26,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 
-mongoose.connect("mongodb+srv://admin_isaac:D2F5d0Ya9i6RBIGA@ace-backend.sjzi9gr.mongodb.net/?retryWrites=true&w=majority&appName=ACE-Backend")
+mongoose.connect(MONGODB_URI)
 .then(() => {
     console.log("Connected");
     app.listen(PORT, () => {

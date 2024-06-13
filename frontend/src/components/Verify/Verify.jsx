@@ -6,14 +6,15 @@ import tel from '../../assets/telephone.svg'
 
 const Verify = () => {
     const [phone, setPhone] = useState('');
-    const navigate = useNavigate(); // Initialiser useHistory
+    const navigate = useNavigate(); 
+    const apiUrl = import.meta.env.REACT_APP_API_URL;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             // Recherche de l'utilisateur associé au numéro de téléphone
-            const response = await axios.get(`http://localhost:2013/users/phone/${phone}`);
+            const response = await axios.get(`${apiUrl}/users/phone/${phone}`);
             const foundUser = response.data;
             console.log(foundUser);
 

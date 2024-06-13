@@ -5,10 +5,11 @@ import "./profile.css";
 
 const Profile = ({ id, name, candidateId, userId }) => {
     const navigate = useNavigate();
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     const handleVote = async () => {
         try {
-            const response = await axios.post('http://localhost:2013/votes', {
+            const response = await axios.post(`${apiUrl}/votes`, {
                 userId: userId, // Passez l'ID de l'utilisateur ici
                 candidateId: candidateId // Passez l'ID du candidat ici
             });

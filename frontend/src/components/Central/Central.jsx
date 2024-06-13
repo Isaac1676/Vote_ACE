@@ -12,12 +12,14 @@ const Central = () => {
     const [phone, setPhone] = useState('');
     const [appartenance, setAppartenance] = useState('');
 
+    const apiUrl = process.env.REACT_APP_API_URL;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             // Envoyer les données au serveur avec Axios
-            const response = await axios.post('http://localhost:2013/users', {
+            const response = await axios.post(`${apiUrl}/users`, {
                 name: name,
                 email: emailValue,
                 phone: phone,

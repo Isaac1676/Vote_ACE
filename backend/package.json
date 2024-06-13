@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "serve": "node index.js"
+    "serve": "dotenv -- .env.backend node index.js"
   },
   "keywords": [],
   "author": "",

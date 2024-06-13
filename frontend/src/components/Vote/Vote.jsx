@@ -9,11 +9,12 @@ const Vote = () => {
     const { user } = location.state || {};
     console.log(user)
     const [candidates, setCandidates] = useState([]);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get('http://localhost:2013/candidats'); // Assurez-vous que l'URL est correcte
+                const response = await axios.get(`${apiUrl}/candidats`); // Assurez-vous que l'URL est correcte
                 setCandidates(response.data);
             } catch (error) {
                 console.log('Erreur lors de la récupération des candidats:', error);
