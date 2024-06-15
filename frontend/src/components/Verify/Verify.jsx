@@ -25,7 +25,8 @@ const Verify = () => {
                         // Redirection vers une autre page
                         navigate('/vote', { state: { user: foundUser } });
                     } else {
-                        alert("L'utilisateur n'appartient pas à l'affiliation ACE.");
+                        alert("L'utilisateur n'appartient pas à l'affiliation ACE.")
+                        navigate('/notace');
                     }
                 } else {
                     alert("Vous avez déjà voté !");
@@ -33,7 +34,8 @@ const Verify = () => {
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
-                alert(error.response.data.message); // Afficher le message d'erreur personnalisé
+                alert(error.response.data.message);// Afficher le message d'erreur personnalisé
+                navigate('/central');
             } else {
                 console.log('Erreur:', error.message);
                 alert("Une erreur est survenue lors de la vérification.");

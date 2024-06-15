@@ -1,0 +1,23 @@
+.not {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+    text-align: center;
+}
+
+.not h1,
+.not p {
+    margin-bottom: 30px; /* Espacement entre les éléments */
+}
+
+.not .button {
+    cursor: pointer;
+    background-color: #cc4e5c; /* Couleur du bouton */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}

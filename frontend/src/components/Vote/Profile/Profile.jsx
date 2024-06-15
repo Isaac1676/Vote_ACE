@@ -16,8 +16,7 @@ const Profile = ({ id, name, candidateId, userId }) => {
             });
 
             if (response.status === 201) {
-                navigate('/');
-                alert(`Merci d'avoir voté pour ${name}`);
+                navigate('/finish');
             }
         } catch (error) {
             console.log('Erreur lors du vote:', error.message);
