@@ -71,10 +71,20 @@ const createUser = async (req, res) => {
     }
 }
 
+const deleteUsers = async (req, res) => {
+    try {
+        await User.deleteMany({});
+        res.status(200).json({ message: 'Tous les candidats ont été supprimés.' });
+    } catch (error) {
+        res.status(500).json({ message: 'Erreur lors de la suppression des candidats.', error });
+    }
+}
+
 module.exports = {
     getUsers,
     getUser,
     getUserByPhone,
     getAce,
+    deleteUsers,
     createUser
 }
