@@ -9,7 +9,7 @@
     text-align: center;
     margin: 40px auto 20px auto;
 }
-
+/*
 .avatar {
     background-color: #fff;
     border-radius: 80px;
@@ -19,10 +19,14 @@
     margin-top: 24px;
     vertical-align: middle;
 }
-
+*/
 .avatar img {
-    padding: 6px;
-    height: auto;
+    padding-top: 32px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .name {
