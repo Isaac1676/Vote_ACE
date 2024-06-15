@@ -14,7 +14,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extends: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
