@@ -42,6 +42,6 @@ mongoose.connect(MONGODB_URI)
             console.log(`APP on ${PORT}`)
         });
     })
-    .catch(() => {
-        console.log("Connection failed")
+    .catch(err => {
+        console.log("Connection failed:", err)
     })
