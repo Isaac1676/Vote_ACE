@@ -1,10 +1,11 @@
 nav {
     background: #fff;
+    width: 100%;
 }
 
 .line {
     border: 1px solid #BF8A3D;
-    margin: 8px 28px ;
+    margin: 8px 5%; /* Utilisation de % pour la marge */
     border-radius: 10px;
 }
 
@@ -15,14 +16,22 @@ nav {
 .nav {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Permettre le retour à la ligne des éléments si nécessaire */
 }
 
 nav > p {
-    padding: 10px 0px 5px 0px;
+    padding: 10px 0 5px; /* Réduction des unités px pour rendre plus adaptable */
     color: #BF8A3D;
     font-size: 14px;
-    font-weight: Bold;
-    letter-spacing: 7px;
-    text-shadow: 0px 0px 15px rgba(191, 138, 61, 0.2);
+    font-weight: bold;
+    letter-spacing: 0.2em; /* Utilisation d'une valeur relative pour l'espacement des lettres */
+    text-shadow: 0 0 15px rgba(191, 138, 61, 0.2);
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    /* Styles spécifiques pour les écrans de largeur maximale de 768px */
+    .line {
+        margin: 8px 10px; /* Ajustement de la marge pour des écrans plus petits */
+    }
 }

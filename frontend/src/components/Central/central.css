@@ -1,37 +1,41 @@
 h1 {
     color: #cc4e5c;
-    margin: 20px 30px;
+    margin: 20px 10%; /* Utilisation de % pour la marge */
+    text-align: center; /* Centrage du texte */
 }
 
 p {
     color: rgba(31, 23, 23, 0.4);
-    margin: -5px 30px;
+    margin: -5px 10%; /* Utilisation de % pour la marge */
+    text-align: center; /* Centrage du texte */
 }
 
 .inputs {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centrage des éléments enfants */
     gap: 25px;
 }
 
 .input {
     display: flex;
     align-items: center;
-    margin: auto;
-    width: 480px;
+    width: 90%; /* Utilisation de % pour la largeur */
+    max-width: 480px; /* Limitation de la largeur maximale */
     height: 80px;
     border: 1px solid #cc4e5c;
     border-radius: 6px;
 }
 
-.input img{
-    margin: 0px 15px;
+.input img {
+    margin: 0 15px;
 }
 
-.input input, .input select{
+.input input, .input select {
+    flex: 1; /* Pour que les champs s'expandent */
     height: 50px;
-    width: 400px;
+    padding: auto;
     background: transparent;
     border: none;
     outline: none;
@@ -42,8 +46,11 @@ p {
 
 .submit_container {
     display: flex;
+    justify-content: center;
     gap: 30px;
     margin: 60px auto;
+    width: 90%; /* Utilisation de % pour la largeur */
+    max-width: 500px; /* Limitation de la largeur maximale */
 }
 
 .submit {
@@ -51,7 +58,6 @@ p {
     justify-content: center;
     align-items: center;
     border: none;
-    width: 500px;
     height: 59px;
     color: #cc4e5c;
     box-shadow: 0 0 15px rgba(204, 78, 92, 0.1);
@@ -60,4 +66,18 @@ p {
     font-weight: 600;
     font-size: 17px;
     border-radius: 10px;
+    width: 100%; /* Utilisation de % pour la largeur */
+    max-width: 500px; /* Limitation de la largeur maximale */
+}
+
+@media screen and (max-width: 768px) {
+    /* Styles spécifiques pour les écrans de largeur maximale de 768px */
+    .input {
+        width: 90%; /* Réduire la largeur pour les écrans plus petits */
+        max-width: none; /* Supprimer la limitation de largeur maximale */
+    }
+    .submit_container {
+        flex-direction: column; /* Empiler les boutons sur les petits écrans */
+        align-items: center;
+    }
 }
